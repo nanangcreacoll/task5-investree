@@ -15,11 +15,11 @@ public class Transaksi implements Serializable {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "id_peminjam")
+    @JoinColumn(name = "id_peminjam", referencedColumnName = "id")
     Users peminjam;
 
     @ManyToOne
-    @JoinColumn(name = "id_meminjam")
+    @JoinColumn(name = "id_meminjam", referencedColumnName = "id")
     Users meminjam;
 
     @Column(name = "tenor")

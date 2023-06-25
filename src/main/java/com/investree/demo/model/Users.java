@@ -24,9 +24,12 @@ public class Users implements Serializable {
     @Column(name = "is_active", nullable = false, columnDefinition = "BOOLEAN")
     private boolean is_active;
 
-    @OneToOne(mappedBy = "user_detail")
+    @OneToOne(mappedBy = "user")
     private UserDetail userDetail;
 
-    @OneToMany(mappedBy = "users")
-    List<Transaksi> transaksi;
+    @OneToMany(mappedBy = "peminjam")
+    List<Transaksi> transaksiPeminjam;
+
+    @OneToMany(mappedBy = "meminjam")
+    List<Transaksi> transaksiMeminjam;
 }
