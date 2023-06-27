@@ -8,10 +8,14 @@ import com.investree.demo.repository.UserDetailRepository;
 import com.investree.demo.repository.UsersRepository;
 import com.investree.demo.view.TransaksiService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.HashMap;
 import java.util.Map;
 
+@Service
+@Transactional
 public class TransaksiPaymentImpl implements TransaksiService {
     @Autowired
     public TransaksiRepository transaksiRepository;
@@ -39,14 +43,14 @@ public class TransaksiPaymentImpl implements TransaksiService {
             userDetailRepository.save(peminjamDetail);
             userDetailRepository.save(meminjamDetail);
             map.put("data", obj);
-            map.put("statusCode", "200");
-            map.put("statusMessage", "Sukses");
+            map.put("status", "Sukses");
+            map.put("code", "200");
             return map;
         }
         catch (Exception e) {
             e.printStackTrace();
-            map.put("statusCode", "500");
-            map.put("statusMessage", e);
+            map.put("status", e);
+            map.put("code", "500");
             return map;
         }
     }
@@ -58,22 +62,22 @@ public class TransaksiPaymentImpl implements TransaksiService {
             Transaksi obj = transaksiRepository.getByID(transaksi.getId());
 
             if(obj == null ){
-                map.put("statusCode", "404");
-                map.put("statusMessage", "Data id tidak ditemukan");
+                map.put("Message", "Data id tidak ditemukan");
+                map.put("code", "404");
                 return map;
             }
 
             obj.setStatus(transaksi.getStatus());
             transaksiRepository.save(obj);
             map.put("data", obj);
-            map.put("statusCode", "200");
-            map.put("statusMessage", "Update Sukses");
+            map.put("status", "Sukses");
+            map.put("code", "200");
             return map;
         }
         catch (Exception e) {
             e.printStackTrace();
-            map.put("statusCode", "500");
-            map.put("statusMessage", e);
+            map.put("status", e);
+            map.put("code", "500");
             return map;
         }
     }
