@@ -8,6 +8,8 @@ import com.investree.demo.repository.UserDetailRepository;
 import com.investree.demo.repository.UsersRepository;
 import com.investree.demo.view.TransaksiService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -30,18 +32,7 @@ public class TransaksiPaymentImpl implements TransaksiService {
     public Map save(Transaksi transaksi) {
         Map map = new HashMap();
         try {
-            Users peminjam = usersRepository.getbyID(transaksi.getPeminjam().getId());
-            Users meminjam = usersRepository.getbyID(transaksi.getMeminjam().getId());
-            transaksi.setPeminjam(peminjam);
-            transaksi.setMeminjam(meminjam);
-            UserDetail peminjamDetail = userDetailRepository.save(transaksi.getPeminjam().getUserDetail());
-            UserDetail meminjamDetail = userDetailRepository.save(transaksi.getMeminjam().getUserDetail());
             Transaksi obj = transaksiRepository.save(transaksi);
-
-            peminjamDetail.setUser(peminjam);
-            meminjamDetail.setUser(meminjam);
-            userDetailRepository.save(peminjamDetail);
-            userDetailRepository.save(meminjamDetail);
             map.put("data", obj);
             map.put("status", "Sukses");
             map.put("code", "200");
@@ -59,9 +50,9 @@ public class TransaksiPaymentImpl implements TransaksiService {
     public Map updateStatus(Transaksi transaksi) {
         Map map = new HashMap();
         try {
-            Transaksi obj = transaksiRepository.getByID(transaksi.getId());
+            Transaksi obj = transaksiRepository.getById(transaksi.getId());
 
-            if(obj == null ){
+            if(obj == null){
                 map.put("Message", "Data id tidak ditemukan");
                 map.put("code", "404");
                 return map;

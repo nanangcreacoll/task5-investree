@@ -16,7 +16,7 @@ public class UserDetail implements Serializable {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_user", referencedColumnName = "id")
-    private Users user;
+    private Users idUser;
 
     @Column(name = "nama", nullable = false, columnDefinition = "VARCHAR")
     private String nama;

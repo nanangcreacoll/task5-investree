@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @Entity
@@ -25,5 +26,5 @@ public class PaymentHistory implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "id_transaksi", referencedColumnName = "id")
-    Transaksi transaksi;
+    Transaksi idTransaksi;
 }

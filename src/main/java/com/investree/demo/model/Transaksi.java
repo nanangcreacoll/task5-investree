@@ -2,10 +2,11 @@ package com.investree.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-import org.apache.catalina.User;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.security.PrivateKey;
+import java.util.List;
 
 @Data
 @Entity
@@ -18,11 +19,11 @@ public class Transaksi implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "id_peminjam", referencedColumnName = "id")
-    Users peminjam;
+    Users idPeminjam;
 
-    @ManyToOne(targetEntity = Users.class, cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "id_meminjam", referencedColumnName = "id")
-    Users meminjam;
+    Users idMeminjam;
 
     @Column(name = "tenor")
     private int tenor;
