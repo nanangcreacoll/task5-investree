@@ -22,12 +22,6 @@ public class TransaksiPaymentImpl implements TransaksiService {
     @Autowired
     public TransaksiRepository transaksiRepository;
 
-    @Autowired
-    public UsersRepository usersRepository;
-
-    @Autowired
-    public UserDetailRepository userDetailRepository;
-
     @Override
     public Map save(Transaksi transaksi) {
         Map map = new HashMap();
