@@ -19,7 +19,7 @@ public class RolePath implements Serializable {
 
     private String method;
 
-    @ManyToMany(targetEntity = Role.class, cascade = CascadeType.ALL)
+    @ManyToOne(targetEntity = Role.class, cascade = CascadeType.ALL)
     @JsonIgnore
     private Role role;
 
