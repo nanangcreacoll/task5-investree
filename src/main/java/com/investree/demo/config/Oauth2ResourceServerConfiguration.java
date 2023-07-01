@@ -33,7 +33,7 @@ public class Oauth2ResourceServerConfiguration extends ResourceServerConfigurerA
                 .disable()
                 .antMatcher("/**")
                 .authorizeRequests()
-                .antMatchers("/","","/v1/transaksi", "/user-register/**","/forget-password/**", "/oauth/authorize**", "/login**", "/error**")
+                .antMatchers("/","/v1/transaksi", "/user-register/**","/forget-password/**", "/oauth/authorize**", "/login**", "/error**")
                 .permitAll()
                 .antMatchers("/v1/role-test-global/list-transaksi").hasAnyAuthority("ROLE_READ")
                 .antMatchers("/v1/role-test-global/post-transaksi").hasAnyAuthority("ROLE_WRITE")
