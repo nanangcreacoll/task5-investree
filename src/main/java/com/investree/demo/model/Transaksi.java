@@ -4,6 +4,8 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Data
 @Entity
@@ -33,4 +35,7 @@ public class Transaksi implements Serializable {
 
     @Column(name = "status", columnDefinition = "VARCHAR")
     private String status;
+
+    @OneToMany(mappedBy = "transaksi")
+    private Set<PaymentHistory> paymentHistories = new LinkedHashSet<>();
 }

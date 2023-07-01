@@ -43,25 +43,27 @@ public class Users implements UserDetails, Serializable {
     @JsonIgnore
     private Date expiredVerifyToken;
 
+    @JsonIgnore
     @Column(length = 100, nullable = true)
     private String otp;
 
+    @JsonIgnore
     private Date otpExpiredDate;
 
     @JsonIgnore
-    private boolean enabled = true;
+    private Boolean enabled = true;
 
     @JsonIgnore
     @Column(name = "not_expired")
-    private boolean accountNonExpired = true;
+    private Boolean accountNonExpired = true;
 
     @JsonIgnore
     @Column(name = "not_locked")
-    private boolean accountNonLocked = true;
+    private Boolean accountNonLocked = true;
 
     @JsonIgnore
     @Column(name = "credential_not_expired")
-    private boolean credentialsNonExpired = true;
+    private Boolean credentialsNonExpired = true;
 
     @ManyToMany(targetEntity = Role.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
@@ -119,14 +121,35 @@ public class Users implements UserDetails, Serializable {
         return accountNonExpired;
     }
 
+    public Boolean getAccountNonExpired() {
+        return accountNonExpired;
+    }
+
+    public void setAccountNonExpired(Boolean accountNonExpired) {
+        this.accountNonExpired = accountNonExpired;
+    }
+
     @Override
     public boolean isAccountNonLocked() {
         return accountNonLocked;
     }
 
+    public Boolean getAccountNonLocked() {
+        return accountNonLocked;
+    }
+
+    public void setAccountNonLocked(Boolean accountNonLocked) {
+        this.accountNonLocked = accountNonLocked;
+    }
+
+
     @Override
     public boolean isCredentialsNonExpired() {
         return credentialsNonExpired;
+    }
+
+    public void setCredentialsNonExpired(boolean credentialsNonExpired) {
+        this.credentialsNonExpired = credentialsNonExpired;
     }
 
     @Override

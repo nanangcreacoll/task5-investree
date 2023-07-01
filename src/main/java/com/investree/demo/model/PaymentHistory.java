@@ -24,7 +24,7 @@ public class PaymentHistory implements Serializable {
     @Column(name = "bukti_pembayaran", columnDefinition = "VARCHAR")
     private String bukti_pembayaran;
 
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "id_transaksi", referencedColumnName = "id")
-    private List<Transaksi> transaksi;
+    private Transaksi transaksi;
 }
