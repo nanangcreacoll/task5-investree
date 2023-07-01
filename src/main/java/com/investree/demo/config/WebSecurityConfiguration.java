@@ -57,7 +57,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    private AccessTokenConverter accessTokenConverter() {
+    public AccessTokenConverter accessTokenConverter() {
         if (jwtEnabled) {
             JwtAccessTokenConverter jwtConverter = new JwtAccessTokenConverter();
             jwtConverter.setAccessTokenConverter(accessTokenConverter);
