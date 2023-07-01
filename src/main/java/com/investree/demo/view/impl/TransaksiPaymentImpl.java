@@ -46,18 +46,19 @@ public class TransaksiPaymentImpl implements TransaksiService {
         try {
             Transaksi obj = transaksiRepository.getById(transaksi.getId());
 
-            if(obj == null){
+            if(obj != null){
+                obj.setStatus("lunas");
+                transaksiRepository.save(obj);
+                map.put("data", obj);
+                map.put("status", "Sukses");
+                map.put("code", "200");
+                return map;
+            } else {
                 map.put("Message", "Data id tidak ditemukan");
                 map.put("code", "404");
                 return map;
             }
 
-            obj.setStatus(transaksi.getStatus());
-            transaksiRepository.save(obj);
-            map.put("data", obj);
-            map.put("status", "Sukses");
-            map.put("code", "200");
-            return map;
         }
         catch (Exception e) {
             e.printStackTrace();

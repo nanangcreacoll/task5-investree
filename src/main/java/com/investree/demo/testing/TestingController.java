@@ -23,8 +23,12 @@ public class TestingController {
         headers.set("Content-Type", "application/json");
         String bodyTesting =
                 "{\n" +
-                "   \"idPeminjam\":\"3\",\n" +
-                "   \"idMeminjam\":\"1\",\n" +
+                "   \"peminjam\":{\n" +
+                        "\"id\":\"3\"\n" +
+                        "},\n" +
+                "   \"meminjam\":{\n" +
+                        "\"id\":\"4\"\n" +
+                        "},\n" +
                 "   \"tenor\":\"12\",\n" +
                 "   \"totalPinjaman\":\"120000\",\n" +
                 "   \"bungaPersen\":\"3\",\n" +
@@ -49,8 +53,7 @@ public class TestingController {
         headers.set("Content-Type", "application/json");
         String bodyTesting =
                 "{\n" +
-                        "   \"id\":\"22\",\n" +
-                        "   \"status\":\"lunas\"\n" +
+                        "   \"id\":\"22\"\n" +
                         "   \n" +
                         "}";
         HttpEntity<String> entity = new HttpEntity<String>(bodyTesting, headers);
