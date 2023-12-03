@@ -1,8 +1,6 @@
 package com.investree.demo.view;
 
 import com.investree.demo.model.Transaksi;
-import org.springframework.data.domain.Pageable;
-
 import java.util.Map;
 
 public interface TransaksiService {
