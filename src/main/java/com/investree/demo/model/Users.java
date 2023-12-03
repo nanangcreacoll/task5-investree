@@ -154,6 +154,6 @@ public class Users implements UserDetails, Serializable {
 
     @Override
     public boolean isEnabled() {
-        return enabled;
+        return true;
     }
 }
